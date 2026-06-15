@@ -95,11 +95,11 @@ TZ=Asia/Jerusalem date -d yesterday +%Y          # e.g. 2026
 
 ### Git author
 
-Commits must use `Claude <noreply@anthropic.com>` as the author so GitHub marks them Verified:
+Commits use the owner's account so they count toward GitHub contribution streaks:
 
 ```bash
-git config user.email 'noreply@anthropic.com'
-git config user.name 'Claude'
+git config user.email 'nathanielkinzelberg@gmail.com'
+git config user.name 'Nathaniel Kinzelberg'
 ```
 
 ### Always commit something
