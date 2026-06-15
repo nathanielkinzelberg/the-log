@@ -81,7 +81,7 @@ Runs daily at midnight Israel time (cron `0 21 * * *` UTC).
 - Writes `logs/YYYY/MonthName/YYYY-MM-DD.md` for yesterday
 - Preserves any existing sections (Coding, Journal, etc.) — only updates Training + Journal
 - Commits with message `log: YYYY-MM-DD daily entry`
-- Pushes to GitHub via PAT
+- Pushes to GitHub via PAT, then runs `git fetch origin main` to update the local tracking ref (required so the stop hook doesn't false-alarm about unpushed commits)
 
 ### Date calculation
 
