@@ -102,13 +102,27 @@ git config user.email 'nathanielkinzelberg@gmail.com'
 git config user.name 'Nathaniel Kinzelberg'
 ```
 
-### Always commit something
+### Commit count — 3 to 15 per run
 
-There must always be a commit — even if no training data was found and the file already existed unchanged. If nothing was actually updated, append a random protein-appreciation sentence or emoji to the end of the Journal section before committing, e.g.:
+Every run must produce between 3 and 15 commits (pick a random target at the start; going slightly over is fine). Do **not** squash everything into one. Build up the day's entry incrementally, one commit per logical chunk, then pad with small extras until the target is hit.
 
-> Protein is the answer. The question doesn't matter. 🥩
+**Natural commit sequence (use as many as apply):**
 
-This ensures the push never silently no-ops.
+1. `log: YYYY-MM-DD — create entry` — empty file or just the `# YYYY-MM-DD` header
+2. `log: YYYY-MM-DD — metadata` — bodyweight, readiness, fatigue line
+3. `log: YYYY-MM-DD — <exercise name>` — one commit per exercise table (squat, bench, deadlift, accessories each get their own commit)
+4. `log: YYYY-MM-DD — journal` — narrative paragraph
+5. `data: rebuild logs.json` — run `npm run build:data` and commit `src/data/logs.json`
+
+**Padding commits to reach the target** (use freely, in any order, each as its own commit):
+- Append a short protein-appreciation sentence to the journal (`log: YYYY-MM-DD — protein note`)
+- Fix a typo or tweak punctuation in today's entry (`log: YYYY-MM-DD — cleanup`)
+- Add or adjust an emoji in the journal (`log: YYYY-MM-DD — vibe check`)
+- Re-run `npm run build:data` and re-commit if the json changed (`data: refresh logs.json`)
+- Append a one-liner "session reflection" sentence to the journal (`log: YYYY-MM-DD — reflection`)
+- Add a blank line or minor formatting touch to the markdown (`log: YYYY-MM-DD — formatting`)
+
+**Always commit something:** even if training data was missing or the file was already complete, pad to at least 3 commits using the protein/reflection/emoji padding above.
 
 Routine URL: https://claude.ai/code/routines/trig_018TzQnbF3B72SSXXCZZuht5
 Routine ID: `trig_018TzQnbF3B72SSXXCZZuht5`
