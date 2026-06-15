@@ -1,5 +1,8 @@
 # Logs (npm)
 *.log
+
+# Journal entries — tracked in separate private repo (the-log-data)
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
