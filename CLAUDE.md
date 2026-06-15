@@ -83,6 +83,33 @@ Runs daily at midnight Israel time (cron `0 21 * * *` UTC).
 - Commits with message `log: YYYY-MM-DD daily entry`
 - Pushes to GitHub via PAT
 
+### Date calculation
+
+The routine fires at midnight Israel time. **Always use the Israel timezone** when computing "yesterday" — the container runs UTC and `date -d yesterday` will return the wrong date after 21:00 UTC:
+
+```bash
+TZ=Asia/Jerusalem date -d yesterday +%Y-%m-%d   # e.g. 2026-06-15
+TZ=Asia/Jerusalem date -d yesterday +%B          # e.g. June
+TZ=Asia/Jerusalem date -d yesterday +%Y          # e.g. 2026
+```
+
+### Git author
+
+Commits must use `Claude <noreply@anthropic.com>` as the author so GitHub marks them Verified:
+
+```bash
+git config user.email 'noreply@anthropic.com'
+git config user.name 'Claude'
+```
+
+### Always commit something
+
+There must always be a commit — even if no training data was found and the file already existed unchanged. If nothing was actually updated, append a random protein-appreciation sentence or emoji to the end of the Journal section before committing, e.g.:
+
+> Protein is the answer. The question doesn't matter. 🥩
+
+This ensures the push never silently no-ops.
+
 Routine URL: https://claude.ai/code/routines/trig_018TzQnbF3B72SSXXCZZuht5
 Routine ID: `trig_018TzQnbF3B72SSXXCZZuht5`
 Environment ID: `env_01LUkY5Dc8PMo1KRSHpUiQL3`
