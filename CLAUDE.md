@@ -2,6 +2,10 @@
 
 Personal daily journal viewer — powerlifting training logs rendered as a wooden bookcase.
 
+## GitHub
+
+https://github.com/nathanielkinzelberg/the-log (public)
+
 ## Structure
 
 ```
@@ -56,15 +60,17 @@ A scheduled Claude agent runs daily at 11:59pm Asia/Jerusalem (cron `59 20 * * *
   - MCP connector: `cdc50e4b-d634-440d-90d6-4e4ea13b4771`
 - Writes a new log file under `logs/`
 - Commits with message `log: YYYY-MM-DD daily entry`
+- Pushes to `https://github.com/nathanielkinzelberg/the-log`
 
-**Current state:** routine still commits to the old `daily-log` GitHub repo.
-**TODO:** create a GitHub repo for `the-log`, update the routine at:
-https://claude.ai/code/routines/trig_018TzQnbF3B72SSXXCZZuht5
-to point to the new repo, and run `npm run build:data` after each commit.
-
-Old routine repo: https://github.com/nathanielkinzelberg/daily-log
+Routine URL: https://claude.ai/code/routines/trig_018TzQnbF3B72SSXXCZZuht5
 Routine ID: `trig_018TzQnbF3B72SSXXCZZuht5`
 Environment ID: `env_01LUkY5Dc8PMo1KRSHpUiQL3`
+
+## Google Drive Training File
+
+- Name: `Nathaniel K - TL - 2026`
+- Shared by: jenya@virtustrength.com (coach Jenya Shapira)
+- File ID: `17zJk4UYoWDKD301ZkV-X_paIYw4I3Z6zeREkfuhnXR4`
 
 ## Owner
 
