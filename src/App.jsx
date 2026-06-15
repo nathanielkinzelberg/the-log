@@ -1,15 +1,9 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import Bookcase from './components/Bookcase'
-import LockModal from './components/LockModal'
 import BookViewer from './components/BookViewer'
 import logsData from './data/logs.json'
 import './App.css'
-
-const MONTHS = [
-  'January','February','March','April','May','June',
-  'July','August','September','October','November','December'
-]
 
 const BOOK_COLORS = [
   '#7B2D2D','#2D4A7B','#2D6B3A','#6B2D6B',
@@ -28,41 +22,19 @@ export function hashColor(str) {
 
 export default function App() {
   const [unlocked, setUnlocked] = useState(false)
-  const [pendingBook, setPendingBook] = useState(null) // { year, month } waiting to open
-  const [openBook, setOpenBook] = useState(null)       // { year, month } currently open
+  const [openBook, setOpenBook] = useState(null)
 
   const handleBookClick = (year, month) => {
-    if (unlocked) {
-      setOpenBook({ year, month })
-    } else {
-      setPendingBook({ year, month })
-    }
+    if (unlocked) setOpenBook({ year, month })
   }
-
-  const handleUnlock = () => {
-    setUnlocked(true)
-    if (pendingBook) {
-      setOpenBook(pendingBook)
-      setPendingBook(null)
-    }
-  }
-
-  const handleCloseLock = () => setPendingBook(null)
-  const handleCloseBook = () => setOpenBook(null)
 
   return (
     <div className="app">
-      <Bookcase onBookClick={handleBookClick} />
-
-      <AnimatePresence>
-        {pendingBook && (
-          <LockModal
-            key="lock"
-            onUnlock={handleUnlock}
-            onClose={handleCloseLock}
-          />
-        )}
-      </AnimatePresence>
+      <Bookcase
+        onBookClick={handleBookClick}
+        unlocked={unlocked}
+        onUnlock={() => setUnlocked(true)}
+      />
 
       <AnimatePresence>
         {openBook && (
@@ -72,7 +44,7 @@ export default function App() {
             month={openBook.month}
             entries={logsData[openBook.year]?.[openBook.month] ?? []}
             color={hashColor(openBook.month + openBook.year)}
-            onClose={handleCloseBook}
+            onClose={() => setOpenBook(null)}
           />
         )}
       </AnimatePresence>

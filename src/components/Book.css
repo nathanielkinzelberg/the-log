@@ -4,7 +4,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 28px;
+  max-width: 56px;
+}
+.book-wrap--summary {
+  flex: 1.4;
+  max-width: 68px;
 }
 
 /* the actual book */
@@ -12,6 +18,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  width: 100%;
   cursor: pointer;
   filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.6));
   transform-origin: bottom center;
@@ -19,10 +26,10 @@
 }
 .book:hover { filter: drop-shadow(3px 8px 16px rgba(0,0,0,0.8)) brightness(1.08); }
 .book--empty {
-  cursor: default;
+  cursor: pointer;
   filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.4)) brightness(0.45) saturate(0.3);
 }
-.book--empty:hover { filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.4)) brightness(0.45) saturate(0.3); }
+.book--empty:hover { filter: drop-shadow(2px 6px 12px rgba(0,0,0,0.7)) brightness(0.55) saturate(0.4); }
 
 /* spine — main visible face */
 .book__spine {
@@ -194,9 +201,9 @@
 /* ─── TASSEL ─────────────────────────────────────────────── */
 .tassel {
   position: absolute;
-  top: -48px;
-  left: 50%;
-  transform: translateX(-60%);
+  top: -12px;
+  left: 5px;
+  transform: none;
   display: flex;
   flex-direction: column;
   align-items: center;

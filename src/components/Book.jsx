@@ -53,12 +53,9 @@ export default function Book({ month, year, color, hasData, entryCount, isSummar
   const label = isSummary ? 'YEAR\nSUM' : (MONTH_SHORT[month] ?? month.slice(0,3).toUpperCase())
   const height = isSummary ? 190 : bookHeight(month + year)
   const isEmpty = !hasData && !isSummary
-  const spineWidth = isSummary ? 42 : 36 + (height % 10)
 
   return (
-    <div className="book-wrap" style={{ height: height + 'px' }}>
-      {isSummary && <Tassel />}
-
+    <div className={`book-wrap ${isSummary ? 'book-wrap--summary' : ''}`} style={{ height: height + 'px' }}>
       <motion.div
         className={`book ${isEmpty ? 'book--empty' : ''} ${isSummary ? 'book--summary' : ''} ${hovered ? 'book--hovered' : ''}`}
         style={{
@@ -66,16 +63,15 @@ export default function Book({ month, year, color, hasData, entryCount, isSummar
           '--color-light': colorLight(color),
           '--color-dark': colorDark(color),
           '--height': height + 'px',
-          '--width': spineWidth + 'px',
           height: height + 'px',
-          width: spineWidth + 'px',
         }}
         onClick={onClick}
-        onHoverStart={() => !isEmpty && setHovered(true)}
+        onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
         animate={{ y: hovered ? -(height * 0.18) : 0 }}
         transition={{ type: 'spring', stiffness: 320, damping: 24 }}
       >
+        {isSummary && <Tassel />}
         {/* main spine */}
         <div className="book__spine">
           {/* spine top band */}
