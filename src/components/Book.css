@@ -5,12 +5,10 @@
   flex-direction: column;
   justify-content: flex-end;
   flex: 1;
-  min-width: 28px;
-  max-width: 56px;
+  min-width: 36px;
 }
 .book-wrap--summary {
   flex: 1.4;
-  max-width: 68px;
 }
 
 /* the actual book */

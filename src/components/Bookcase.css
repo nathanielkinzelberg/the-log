@@ -103,7 +103,14 @@
   gap: 0;
   width: calc(100vw - 96px);
   padding: 32px 12px 0;
+  overflow-x: auto;
+  /* scrollbar styled to match the wood */
+  scrollbar-width: thin;
+  scrollbar-color: #5C3010 #1A0C05;
 }
+.bookcase__interior::-webkit-scrollbar { height: 6px; }
+.bookcase__interior::-webkit-scrollbar-track { background: #1A0C05; }
+.bookcase__interior::-webkit-scrollbar-thumb { background: #5C3010; border-radius: 3px; }
 
 /* one row (year) */
 .shelf-unit {
@@ -136,6 +143,8 @@
   gap: 4px;
   padding: 56px 8px 0;
   flex: 1;
+  /* 13 books × 36px min + 12 gaps × 4px = 516px — forces scroll before books squish */
+  min-width: 516px;
 }
 
 /* bracket on sides */
