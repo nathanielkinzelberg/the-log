@@ -1,0 +1,245 @@
+/* wrapper gives the tassel space above the book */
+.book-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* the actual book */
+.book {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.6));
+  transform-origin: bottom center;
+  transition: filter 0.2s;
+}
+.book:hover { filter: drop-shadow(3px 8px 16px rgba(0,0,0,0.8)) brightness(1.08); }
+.book--empty {
+  cursor: default;
+  filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.4)) brightness(0.45) saturate(0.3);
+}
+.book--empty:hover { filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.4)) brightness(0.45) saturate(0.3); }
+
+/* spine — main visible face */
+.book__spine {
+  flex: 1;
+  background:
+    /* cloth/fabric grain */
+    repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.018) 2px,
+      rgba(255,255,255,0.018) 4px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.025) 2px,
+      rgba(0,0,0,0.025) 4px
+    ),
+    /* color gradient — lighter at top, darker at bottom */
+    linear-gradient(
+      180deg,
+      var(--color-light) 0%,
+      var(--color) 35%,
+      var(--color-dark) 100%
+    );
+  border-radius: 1px 0 0 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* left edge sheen */
+.book__spine::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.18),
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.12)
+  );
+}
+
+/* gold summary book */
+.book--summary .book__spine {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.025) 2px,
+      rgba(255,255,255,0.025) 4px
+    ),
+    linear-gradient(
+      180deg,
+      #E8C84A 0%,
+      #C9A84C 30%,
+      #A88830 65%,
+      #8B6914 100%
+    );
+  border-radius: 1px 0 0 1px;
+}
+
+.book__band {
+  width: 80%;
+  height: 2px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 1px;
+  position: relative;
+  flex-shrink: 0;
+}
+.book__band::before {
+  content: '';
+  position: absolute;
+  inset: -2px 0;
+  background: rgba(255,255,255,0.06);
+  border-radius: 1px;
+}
+.book--summary .book__band { background: rgba(0,0,0,0.2); }
+
+.book__title-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.book__label {
+  font-family: 'Georgia', serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.88);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  white-space: pre;
+  text-align: center;
+  line-height: 1.4;
+}
+.book--summary .book__label {
+  color: rgba(20,10,0,0.8);
+  text-shadow: 0 1px 2px rgba(255,200,0,0.2);
+  font-size: 8px;
+}
+
+.book__ornament {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  flex-shrink: 0;
+  line-height: 1;
+}
+.book--summary .book__ornament {
+  color: rgba(80,40,0,0.6);
+  font-size: 13px;
+}
+
+.book__subtitle {
+  font-family: 'Georgia', serif;
+  font-size: 7px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.book--summary .book__subtitle { color: rgba(40,20,0,0.5); }
+
+/* page block — cream right edge */
+.book__pages {
+  width: 7px;
+  background: linear-gradient(
+    90deg,
+    #E8DEC0,
+    #D4C8A0,
+    #C8BCA0,
+    #D4C8A0
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 4px 0;
+  border-left: 1px solid rgba(0,0,0,0.12);
+}
+
+.book__page-line {
+  width: 5px;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 0.5px;
+}
+
+/* top edge visible when pulled out */
+.book__top {
+  display: none; /* visible via perspective in parent when hovered */
+}
+
+/* ─── TASSEL ─────────────────────────────────────────────── */
+.tassel {
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.tassel__cord {
+  width: 2px;
+  height: 10px;
+  background: linear-gradient(to bottom, var(--gold-bright, #E8C84A), var(--gold, #C9A84C));
+  border-radius: 1px;
+}
+
+.tassel__cap {
+  width: 14px;
+  height: 8px;
+  background: linear-gradient(
+    180deg,
+    #E8C84A 0%,
+    #C9A84C 50%,
+    #A88830 100%
+  );
+  border-radius: 3px 3px 2px 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.tassel__skirt {
+  display: flex;
+  gap: 1.5px;
+  padding-top: 1px;
+}
+
+.tassel__thread {
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    #C9A84C 0%,
+    #E8C84A 40%,
+    #A88830 80%,
+    #C9A84C 100%
+  );
+  border-radius: 0 0 1px 1px;
+  opacity: 0.9;
+}

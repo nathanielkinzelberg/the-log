@@ -1,0 +1,207 @@
+.bookcase {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    /* subtle ambient light from above */
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(180,120,60,0.12) 0%, transparent 60%),
+    /* dark room background */
+    #0E0703;
+}
+
+/* back wall — wood panel */
+.bookcase__wall {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(0,0,0,0.25) 79px,
+      rgba(0,0,0,0.25) 82px,
+      transparent 82px,
+      transparent 84px,
+      rgba(255,255,255,0.02) 84px,
+      rgba(255,255,255,0.02) 85px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 39px,
+      rgba(0,0,0,0.1) 39px,
+      rgba(0,0,0,0.1) 40px
+    ),
+    linear-gradient(180deg, #2A1408 0%, #1A0C05 50%, #120804 100%);
+  pointer-events: none;
+}
+
+/* outer frame sides */
+.bookcase__side {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 48px;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 8px,
+      rgba(0,0,0,0.06) 8px,
+      rgba(0,0,0,0.06) 9px
+    ),
+    linear-gradient(
+      90deg,
+      #5C3010 0%,
+      #7A4420 30%,
+      #6B3818 60%,
+      #4A2810 100%
+    );
+  z-index: 10;
+  pointer-events: none;
+}
+.bookcase__side--left {
+  left: 0;
+  box-shadow: inset -3px 0 8px rgba(0,0,0,0.4), 4px 0 12px rgba(0,0,0,0.5);
+  border-right: 2px solid #3A1C08;
+}
+.bookcase__side--right {
+  right: 0;
+  box-shadow: inset 3px 0 8px rgba(0,0,0,0.4), -4px 0 12px rgba(0,0,0,0.5);
+  border-left: 2px solid #3A1C08;
+}
+
+/* top crown molding */
+.bookcase__crown {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.06) 10px,
+      rgba(0,0,0,0.06) 11px
+    ),
+    linear-gradient(180deg, #8B5028 0%, #6B3818 40%, #4A2410 80%, #2A1208 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.7);
+  z-index: 10;
+  pointer-events: none;
+  border-bottom: 2px solid #3A1C08;
+}
+
+/* main interior */
+.bookcase__interior {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: calc(100vw - 96px);
+  padding: 32px 12px 0;
+}
+
+/* one row (year) */
+.shelf-unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.shelf-unit__label {
+  font-family: 'Georgia', serif;
+  font-size: 11px;
+  color: rgba(200,160,80,0.5);
+  letter-spacing: 0.2em;
+  padding: 0 0 6px 6px;
+  text-transform: uppercase;
+}
+
+.shelf-unit__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  padding: 0 0 0 0;
+  min-height: 200px;
+  position: relative;
+}
+
+.shelf-unit__books {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 40px 8px 0;
+  flex: 1;
+}
+
+/* bracket on sides */
+.shelf-bracket {
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #3A1C08,
+    #5A2E12,
+    #3A1C08
+  );
+  flex-shrink: 0;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+}
+.shelf-bracket--left { border-right: 1px solid #2A1008; }
+.shelf-bracket--right { border-left: 1px solid #2A1008; }
+
+/* the actual shelf plank */
+.shelf-plank {
+  position: relative;
+  margin-top: -1px;
+}
+
+.shelf-plank__face {
+  height: 18px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 14px,
+      rgba(0,0,0,0.05) 14px,
+      rgba(0,0,0,0.05) 15px
+    ),
+    linear-gradient(
+      180deg,
+      #A86830 0%,
+      #7A4820 35%,
+      #5C3414 70%,
+      #3C2008 100%
+    );
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.06),
+    inset 0 -1px 3px rgba(0,0,0,0.4);
+}
+
+.shelf-plank__front {
+  height: 8px;
+  background: linear-gradient(
+    180deg,
+    #6B3A18 0%,
+    #4A2810 60%,
+    #2A1408 100%
+  );
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+.shelf-plank__shadow {
+  height: 6px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.4),
+    transparent
+  );
+}
+
+.shelf-plank--bottom {
+  margin-top: 0;
+}
