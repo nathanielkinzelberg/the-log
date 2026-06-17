@@ -80,8 +80,8 @@ Runs daily at midnight Israel time (cron `0 21 * * *` UTC).
   - MCP connector: `cdc50e4b-d634-440d-90d6-4e4ea13b4771`
 - Writes `logs/YYYY/MonthName/YYYY-MM-DD.md` for yesterday
 - Preserves any existing sections (Coding, Journal, etc.) — only updates Training + Journal
-- Commits with message `log: YYYY-MM-DD daily entry`
-- Pushes to GitHub via PAT, then runs `git fetch origin main` to update the local tracking ref (required so the stop hook doesn't false-alarm about unpushed commits)
+- Makes 3–15 commits per run, building the entry incrementally (see commit count section below)
+- Pushes all commits to GitHub via PAT after the sequence is complete
 
 ### Date calculation
 
@@ -136,4 +136,4 @@ Environment ID: `env_01LUkY5Dc8PMo1KRSHpUiQL3`
 
 ## Owner
 
-Nathaniel Kinzelberg — kinzelberg1@gmail.com
+Nathaniel Kinzelberg — nathanielkinzelberg@gmail.com
